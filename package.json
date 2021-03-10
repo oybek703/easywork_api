@@ -1,0 +1,24 @@
+{
+  "name": "easyworkapi",
+  "version": "1.0.0",
+  "description": "Backend API for Easywork",
+  "main": "index.js",
+  "scripts": {
+    "server": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "Eastywork",
+    "Node",
+    "JS"
+  ],
+  "author": "Yoriqulov Oybek",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7"
+  }
+}
