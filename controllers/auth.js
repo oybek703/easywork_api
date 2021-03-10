@@ -1,5 +1,9 @@
-exports.postLogin = (req, res) => {
-    const {username, phone} = req.body
-
-    res.json({msg: 'login'})
+exports.postLogin = (req, res, next) => {
+    const {username, phoneNumber} = req.body
+    console.log(req.body)
+    if(!req.body) {
+        const error = new Error('Something went wrong!')
+        next(error)
+    }
+    res.json({success: true, msg: 'login'})
 }
