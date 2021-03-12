@@ -1,8 +1,9 @@
-require('dotenv').config()
 const express = require('express')
 const connectDB = require('./db')
 const app = express()
-
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
 app.use(express.json())
 app.use('/auth', require('./routes/auth'))
 app.use(require('./middleware/error'))
