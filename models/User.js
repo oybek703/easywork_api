@@ -6,15 +6,10 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Username is required.'],
         minlength: [4, 'Username must have at least 4 characters.']
     },
-    phone: {
+    password: {
         type: String,
-        required: [true, 'Phone number is required.'],
-        validate: {
-            validator: v => {
-                return /^\+[0-9]{2} [0-9]{3} [0-9]{2} [0-9]{2}$/.test(v)
-            },
-            message: `Phone number is not valid.`
-        }
+        required: [true, 'Password is required.'],
+        minlength: [6, 'Password must contain at least 6 characters']
     },
     role: {
         type: String,
