@@ -4,7 +4,6 @@
   "description": "Backend API for Easywork",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
     "server": "node app.js",
     "dev": "nodemon app.js"
   },
@@ -28,6 +27,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.4",
     "mongoose": "^5.11.15",
+    "twilio": "^3.59.0",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
