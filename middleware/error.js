@@ -1,6 +1,7 @@
 const ErrorResponse = require('../utils/errorResponse')
 module.exports = (err, req, res, next) => {
     let error = {...err}
+    console.log(err)
     error.message = err.message
     if(err.code === 11000) {
         error = new ErrorResponse(
