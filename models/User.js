@@ -12,16 +12,25 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: [true, 'Email address is required.'],
       unique: true,
-        match: [
-            /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-            'Please add a valid email address.',
-        ]
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        'Please add a valid email address.',
+      ]
     },
     password: {
         type: String,
         required: [true, 'Password is required.'],
         minlength: [6, 'Password must contain at least 6 characters'],
         select: false
+    },
+    phoneNumber: {
+        type: String,
+        required: [true, 'Phone number is required.'],
+        unique: true,
+        match: [
+            /^\+998[0-9]{2}[0-9]{3}[0-9]{2}[0-9]{2}$/,
+            'Please enter your valid phone number. ex: +998901234567',
+        ]
     },
     role: {
         type: String,
@@ -34,6 +43,10 @@ const userSchema = new mongoose.Schema({
     subjects: {
         type: Array,
         default: []
+    },
+    verified: {
+        type: Boolean,
+        default: false
     }
 }, {timestamps: true})
 

@@ -6,8 +6,8 @@ const User = require('../models/User')
 // @route POST /auth/register
 // @access public
 exports.register = asyncHandler(async (req, res) => {
-        const {username, email, password, role, description} = req.body
-        const user = await User.create({email, password, role, description, username})
+        const {username, email, password, role, description, phoneNumber} = req.body
+        const user = await User.create({email, password, role, description, username, phoneNumber})
         sendTokenResponse(user, 200, res)
 })
 
@@ -25,23 +25,8 @@ exports.login = asyncHandler(async (req, res, next) => {
         if(!isPasswordValid) {
                 return next(new ErrorResponse('Invalid credentials.', 401))
         }
-        console.log(res)
         sendTokenResponse(user, 200, res)
 })
-
-// get token, create cookie and send response
-const sendTokenResponse = (user, statusCode, res) => {
-        const token = user.getToken()
-        res.status(statusCode).cookie(
-            'token',
-            token,
-            {
-                expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 86400 * 1000),
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production'
-            }
-        ).json({success: true, token})
-}
 
 // @desc Get current user
 // @route GET /auth/login
@@ -60,4 +45,19 @@ exports.logout = asyncHandler(async (req, res) => {
                 httpOnly: true
         }).json({success: true, data: {}})
 })
+
+// get token, create cookie and send response
+const sendTokenResponse = (user, statusCode, res) => {
+        const token = user.getToken()
+        res.status(statusCode).cookie(
+            'token',
+            token,
+            {
+                    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 86400 * 1000),
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV === 'production'
+            }
+        ).json({success: true, token})
+}
+
 

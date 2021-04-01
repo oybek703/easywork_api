@@ -30,6 +30,7 @@ app.use(express.static('public'))
 app.use(cookieParser())
 app.use(mongoSanitize())
 app.use('/auth', require('./routes/auth'))
+app.use('/verify', require('./routes/verify'))
 app.use(require('./middleware/error'))
 app.use(require('./middleware/notFound'))
 
